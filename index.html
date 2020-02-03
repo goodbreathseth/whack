@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Whack</title>
+</head>
+<body>
+    <div id="app">
+        <div class="bg-green-500 pt-24">
+            <div class="" @click="show = !show">
+                <!-- <div style="background-image:url(images/background-1157111_1920.jpg)" class="border-transparent rounded-t-full h-10 w-20  flex items-center justify-center"></div> -->
+                <div class="border-transparent rounded-t-full h-10 w-20 bg-orange-900 flex items-center justify-center relative">
+                    <transition name="popup"> 
+                        <img v-if="show" :class="[show ? appear : hide]" src="images/—Pngtree—hamsters_1856398.png" alt="hampster" width="80" class="absolute bottom-0">
+                    </transition>
+                </div>
+                <div class="border-transparent rounded-b-full h-10 w-20 bg-orange-900 flex items-center justify-center "></div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

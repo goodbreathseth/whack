@@ -1,0 +1,16 @@
+.popup-enter-active, .popup-leave-active {
+    transition: opacity .2s;
+    /* transform: translateY(20px) */
+  }
+  .popup-enter, .popup-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    /* transform: translateY(20px) */
+  }
+
+  .appear {
+    transform: translateY(-20px);
+  }
+
+  .hide {
+      transform: translateY(0);
+  }
