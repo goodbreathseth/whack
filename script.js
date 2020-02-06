@@ -6,4 +6,16 @@ new Vue ({
     methods: {
 
     },
+    computed: {
+        getMoleClasses: function() {
+            if (this.show) {
+                // return "appear"
+            }
+            else {
+                return "hide"
+            }
+            
+        }
+
+    },
 })

@@ -8,9 +8,9 @@
   }
 
   .appear {
-    transform: translateY(-20px);
+    transform: translateY(0px);
   }
 
   .hide {
-      transform: translateY(0);
+      transform: translateY(30px);
   }
