@@ -11,15 +11,16 @@
 </head>
 <body>
     <div id="app">
-        <div class="bg-green-500 pt-24">
-            <div class="" @click="show = !show">
-                <!-- <div style="background-image:url(images/background-1157111_1920.jpg)" class="border-transparent rounded-t-full h-10 w-20  flex items-center justify-center"></div> -->
-                <div class="border-transparent rounded-t-full h-10 w-20 bg-orange-900 flex items-center justify-center relative">
+        <div class="w-full bg-white p-2">Score</div>
+        <div class="pt-16 bg-green-500">
+            <div class="text-center">
+                <div v-for="(isVisible, index) in molesVisible" @click="show = !show" class="inline-block rounded-full h-20 w-20 bg-orange-900 relative m-4 overflow-hidden py-8">
+                    <!-- <img src="https://media.istockphoto.com/vectors/big-hole-the-ground-illustration-ground-works-digging-of-sand-coal-vector-id1163976578?k=6&m=1163976578&s=612x612&w=0&h=bIr1Z9NfMlZuwO9ihaUoMfn67R9pUtUYPp5Dtt20-44=" alt=""> -->
                     <transition name="popup"> 
-                        <img v-if="show" :class="getMoleClasses" src="images/hampter-shorter.png" alt="hampster" width="80" class="absolute bottom-0">
+                        <img v-if="show" :class="getMoleClasses" src="images/—Pngtree—hamsters_1856398.png" alt="hampster" width="80" class="absolute -mt-2 top-0">
                     </transition>
+
                 </div>
-                <div class="border-transparent rounded-b-full h-10 w-20 bg-orange-900 flex items-center justify-center "></div>
             </div>
 
         </div>
