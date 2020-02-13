@@ -14,3 +14,8 @@
   .hide {
       /* transform: translateY(30px); */
   }
+
+  .pad {
+    padding: inherit;
+    
+  }

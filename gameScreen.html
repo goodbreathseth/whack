@@ -11,13 +11,18 @@
 </head>
 <body>
     <div id="app">
-        <div class="w-full bg-white p-2">Score</div>
+        <div class="w-full bg-white p-2 flex justify-between">
+            <p>Score: {{ score }}</p>
+            <button class="bg-gray-200 py-1 px-4" @click="gameIsGoing = !gameIsGoing">
+                <span v-if="gameIsGoing">Pause</span>
+                <span v-else>Start</span>
+            </button>
+        </div>
         <div class="pt-16 bg-green-500">
             <div class="text-center">
-                <div v-for="(isVisible, index) in molesVisible" @click="show = !show" class="inline-block rounded-full h-20 w-20 bg-orange-900 relative m-4 overflow-hidden py-8">
-                    <!-- <img src="https://media.istockphoto.com/vectors/big-hole-the-ground-illustration-ground-works-digging-of-sand-coal-vector-id1163976578?k=6&m=1163976578&s=612x612&w=0&h=bIr1Z9NfMlZuwO9ihaUoMfn67R9pUtUYPp5Dtt20-44=" alt=""> -->
+                <div v-for="(isVisible, index) in molesVisible"  class="inline-block rounded-full h-20 w-20 bg-orange-900 relative m-4 overflow-hidden">
                     <transition name="popup"> 
-                        <img v-if="show" :class="getMoleClasses" src="images/—Pngtree—hamsters_1856398.png" alt="hampster" width="80" class="absolute -mt-2 top-0">
+                        <img v-if="isVisible" @click="moleTapped(index)" src="images/hampster-full.png" alt="hampster" width="68px" class="absolute ml-1 mt-2 top-0">
                     </transition>
 
                 </div>

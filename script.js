@@ -1,32 +1,76 @@
 new Vue ({
     el: '#app',
     data: {
-        show: false,
-        molesVisible: [false, false, false, false, false, false, false, false, false, false, false, false]
+        gameIsGoing: true,
+        molesVisible: [false, false, false, false, false, false, false, false, false, false, false, false],
+        popOutFrequencyMax: 4000,
+        popOutFrequencyMin: 1000,
+        popOutFrequency: 1000,
+        stayOutDurationMax: 2000,
+        stayOutDurationMin: 1000,
+        timeoutID: null,
+        score: 0,
     },
-    created: function() {
-        // for (let i = 0; i < 12; i++) {
-        //     molesVisible[i] = false;
-        // }
-    },
-    methods: {
-        
+    mounted: function() {
+        this.startGame();
     },
     watch: {
-        show: function() {
-            console.log("show changed")
-        }
-    },
-    computed: {
-        getMoleClasses: function() {
-            if (this.show) {
-                // return "appear"
+        gameIsGoing: function() {
+            if (this.gameIsGoing) {
+                this.startGame();
             }
             else {
-                return "hide"
+                this.pauseGame();
             }
-            
-        }
+        },
+    },
+    computed: {
+    
+    },
+    methods: {
+        startGame: function() {
+            this.timeoutID = setTimeout(() => {
+                this.popOutFrequency = (Math.random() * this.popOutFrequencyMax) + this.popOutFrequencyMin;
+                this.popOutMole();
+                this.startGame();
+            }, this.popOutFrequency)
+        },
+        pauseGame: function() {
+            clearTimeout(this.timeoutID);
+        },
+        popOutMole: function() {
+            // Pick a random number between 0 and 11 to select the hole
+            let holeNum = Math.floor((Math.random() * 11));
 
+            // If the currently selected mole is already out, call
+            // popOutMole again to select a different mole
+            if(this.molesVisible[holeNum]) {
+                return this.popOutMole();
+            }
+
+            // Set the mole of that hole to visible
+            Vue.set(this.molesVisible, holeNum, true);
+            
+            // Wait stayOutFrequency, then signal the mole to go back into the hole
+            setTimeout(() => {
+                Vue.set(this.molesVisible, holeNum, false);
+            }, (Math.random() * this.stayOutDurationMax) + this.stayOutDurationMin )
+
+        },
+        updateFrequencies: function() {
+            if (this.popOutFrequencyMax > 350)
+                this.popOutFrequencyMax -= 100;
+            if (this.popOutFrequencyMin > 300)
+                this.popOutFrequencyMin -= 100;
+            if (this.stayOutDurationMax > 350)
+                this.stayOutDurationMax -= 100;
+            if (this.stayOutDurationMin > 300)
+                this.stayOutDurationMin -= 100;
+        },
+        moleTapped: function(index) {
+            Vue.set(this.molesVisible, index, false);
+            this.score++;
+            this.updateFrequencies();
+        },
     },
 })
