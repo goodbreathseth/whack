@@ -1,7 +1,7 @@
 new Vue ({
     el: '#app',
     data: {
-        gameIsGoing: true,
+        gameState: 'unstarted',
         molesVisible: [false, false, false, false, false, false, false, false, false, false, false, false],
         popOutFrequencyMax: 4000,
         popOutFrequencyMin: 1000,
@@ -12,31 +12,37 @@ new Vue ({
         score: 0,
     },
     mounted: function() {
-        this.startGame();
-    },
-    watch: {
-        gameIsGoing: function() {
-            if (this.gameIsGoing) {
-                this.startGame();
-            }
-            else {
-                this.pauseGame();
-            }
-        },
+        // this.startGame();
     },
     computed: {
-    
+
     },
     methods: {
+        newGame: function() {
+            this.gameState = 'unstarted';
+            this.molesVisible = [false, false, false, false, false, false, false, false, false, false, false, false];
+            this.popOutFrequencyMax = 4000;
+            this.popOutFrequencyMin = 1000;
+            this.popOutFrequency = 1000;
+            this.stayOutDurationMax = 2000;
+            this.stayOutDurationMin = 1000;
+            this.timeoutID = null;
+            this.score = 0;
+        },
         startGame: function() {
             this.timeoutID = setTimeout(() => {
                 this.popOutFrequency = (Math.random() * this.popOutFrequencyMax) + this.popOutFrequencyMin;
                 this.popOutMole();
                 this.startGame();
             }, this.popOutFrequency)
+            this.gameState = 'running';
         },
         pauseGame: function() {
             clearTimeout(this.timeoutID);
+            this.gameState = 'paused';
+        },
+        endGame: function() {
+            this.gameState = 'ended';
         },
         popOutMole: function() {
             // Pick a random number between 0 and 11 to select the hole

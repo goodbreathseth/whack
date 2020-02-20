@@ -13,12 +13,20 @@
     <div id="app">
         <div class="w-full bg-white p-2 flex justify-between">
             <p>Score: {{ score }}</p>
-            <button class="bg-gray-200 py-1 px-4" @click="gameIsGoing = !gameIsGoing">
-                <span v-if="gameIsGoing">Pause</span>
-                <span v-else>Start</span>
+            <button v-if="gameState === 'running'" class="bg-gray-200 py-1 px-4" @click="pauseGame()">
+                <span>Pause</span>
             </button>
         </div>
-        <div class="pt-16 bg-green-500">
+
+
+        <div v-if="gameState === 'unstarted'">
+            <h1 class="text-6xl text-center my-6">Whack-A-Mole</h1>
+            <p class="text-2xl text-center py-4" @click='startGame()'>Start Game</p>
+            <p class="text-2xl text-center py-4">Load Game (not implemented)</p>
+        </div>
+
+
+        <div v-if="gameState === 'running'" class="pt-16 bg-green-500">
             <div class="text-center">
                 <div v-for="(isVisible, index) in molesVisible"  class="inline-block rounded-full h-20 w-20 bg-orange-900 relative m-4 overflow-hidden">
                     <transition name="popup"> 
@@ -27,9 +35,22 @@
 
                 </div>
             </div>
-
         </div>
 
+
+        <div v-if="gameState === 'paused'">
+            <h1 class='text-center text-5xl my-6'>Paused</h1>
+            <p class='text-center text-2xl py-4' @click='startGame()'>Resume</p>
+            <p class='text-center text-2xl py-4'>Save Game (not implemented)</p>
+            <p class='text-center text-2xl py-4' @click='endGame()'>Quit Game</p>
+        </div>
+
+
+        <div v-if="gameState === 'ended'">
+            <h1 class='text-center text-5xl my-6'>Game Over</h1>
+            <p class='text-center text-xl my-4'>Score: {{ score }}</p>
+            <p class='text-center text-2xl py-4' @click='newGame()'>Play Again</p>
+        </div>
 
 
     </div>
