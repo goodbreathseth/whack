@@ -10,22 +10,27 @@
     <title>Whack</title>
 </head>
 <body>
-    <div id="app">
-        <div class="w-full bg-white p-2 flex justify-between">
+    <div id="app" >
+        <div class="w-full bg-white p-2 flex justify-between items-center h-12">
             <p>Score: {{ score }}</p>
             <button class="bg-gray-200 py-1 px-4" @click="gameIsGoing = !gameIsGoing">
                 <span v-if="gameIsGoing">Pause</span>
                 <span v-else>Start</span>
             </button>
         </div>
-        <div class="pt-16 bg-green-500">
-            <div class="text-center">
-                <div v-for="(isVisible, index) in molesVisible"  class="inline-block rounded-full h-20 w-20 bg-orange-900 relative m-4 overflow-hidden">
-                    <transition name="popup"> 
-                        <img v-if="isVisible" @click="moleTapped(index)" src="images/hampster-full.png" alt="hampster" width="68px" class="absolute ml-1 mt-2 top-0">
+        <div class="flex bg-green-500 grassHeight">
+            <div class="self-center text-center">
+                <div v-for="(isVisible, index) in arrayOfMoles"  class="relative inline-block rounded-full holeSize bg-orange-900 mx-3 my-5">
+                    <div class="rounded-full w-full h-full relative overflow-hidden">
+                        <transition name="popup"> 
+                            <img v-if="isVisible" @click="moleTapped(index)" src="images/hampster-full.png" alt="hampster" class="absolute top-0 left-0 right-0 mx-auto mt-3 moleSize">
+                        </transition>
+                    </div>
+                    <transition name="scoreTransition"> 
+                        <div v-if="arrayOfScores[index]" class="absolute top-0 left-0 right-0 mx-auto -mt-6 text-gray-300 font-bold">+1 score</div>
                     </transition>
-
                 </div>
+
             </div>
 
         </div>

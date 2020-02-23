@@ -1,21 +1,27 @@
+.grassHeight {
+  height: calc(100vh - 3rem);
+}
+
+.holeSize {
+  height: 24vw;
+  width: 24vw;
+}
+
+.moleSize {
+  width: 20vw;
+}
+
 .popup-enter-active, .popup-leave-active {
-    transition: all .2s;
-    /* transform: translateY(-20px) */
+    transition: all .2s ease;
   }
-  .popup-enter, .popup-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    /* opacity: 0; */
+  .popup-enter, .popup-leave-to {
     transform: translateY(80px)
   }
 
-  .appear {
-    /* transform: translateY(-30px); */
+.scoreTransition-enter-active, .scoreTransition-leave-active {
+    transition: all .5s ease;
   }
-
-  .hide {
-      /* transform: translateY(30px); */
-  }
-
-  .pad {
-    padding: inherit;
-    
+  .scoreTransition-enter {
+    opacity: 0;
+    transform: translateY(90px)
   }

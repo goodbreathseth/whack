@@ -2,7 +2,8 @@ new Vue ({
     el: '#app',
     data: {
         gameIsGoing: true,
-        molesVisible: [false, false, false, false, false, false, false, false, false, false, false, false],
+        arrayOfMoles: [false, false, false, false, false, false, false, false, false, false, false, false],
+        arrayOfScores: [false, false, false, false, false, false, false, false, false, false, false, false],
         popOutFrequencyMax: 4000,
         popOutFrequencyMin: 1000,
         popOutFrequency: 1000,
@@ -44,16 +45,16 @@ new Vue ({
 
             // If the currently selected mole is already out, call
             // popOutMole again to select a different mole
-            if(this.molesVisible[holeNum]) {
+            if(this.arrayOfMoles[holeNum]) {
                 return this.popOutMole();
             }
 
             // Set the mole of that hole to visible
-            Vue.set(this.molesVisible, holeNum, true);
+            Vue.set(this.arrayOfMoles, holeNum, true);
             
             // Wait stayOutFrequency, then signal the mole to go back into the hole
             setTimeout(() => {
-                Vue.set(this.molesVisible, holeNum, false);
+                Vue.set(this.arrayOfMoles, holeNum, false);
             }, (Math.random() * this.stayOutDurationMax) + this.stayOutDurationMin )
 
         },
@@ -68,7 +69,11 @@ new Vue ({
                 this.stayOutDurationMin -= 100;
         },
         moleTapped: function(index) {
-            Vue.set(this.molesVisible, index, false);
+            Vue.set(this.arrayOfMoles, index, false);
+            Vue.set(this.arrayOfScores, index, true);
+            setTimeout(() => {
+                Vue.set(this.arrayOfScores, index, false);
+            }, 600)
             this.score++;
             this.updateFrequencies();
         },
