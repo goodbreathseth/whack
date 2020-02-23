@@ -12,16 +12,16 @@
 }
 
 .popup-enter-active, .popup-leave-active {
-    transition: all .2s ease;
-  }
-  .popup-enter, .popup-leave-to {
-    transform: translateY(80px)
-  }
+  transition: all .2s ease;
+}
+.popup-enter, .popup-leave-to {
+  transform: translateY(80px)
+}
 
 .scoreTransition-enter-active, .scoreTransition-leave-active {
-    transition: all .5s ease;
-  }
-  .scoreTransition-enter {
-    opacity: 0;
-    transform: translateY(90px)
-  }
+  transition: all .5s ease;
+}
+.scoreTransition-enter {
+  opacity: 0;
+  transform: translateY(90px)
+}

@@ -2,7 +2,7 @@ new Vue ({
     el: '#app',
     data: {
         gameState: 'unstarted',
-        molesVisible: [false, false, false, false, false, false, false, false, false, false, false, false],
+        arrayOfMoles: [false, false, false, false, false, false, false, false, false, false, false, false],
         arrayOfScores: [false, false, false, false, false, false, false, false, false, false, false, false],
         popOutFrequencyMax: 4000,
         popOutFrequencyMin: 1000,
