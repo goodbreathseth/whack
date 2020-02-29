@@ -83,5 +83,55 @@ new Vue ({
             this.score++;
             this.updateFrequencies();
         },
+        saveGame: function(){
+            // Save all cookies for a year
+            this.saveCookie("score", this.score, 365);
+            this.saveCookie("popOutFrequencyMax", this.popOutFrequencyMax, 365);
+            this.saveCookie("popOutFrequencyMin", this.popOutFrequencyMin, 365);
+            this.saveCookie("stayOutDurationMax", this.stayOutDurationMax, 365);
+            this.saveCookie("stayOutDurationMin", this.stayOutDurationMin, 365);
+        },
+        loadGame: function(){
+            // Load cookies
+            var savedScore = this.getCookie("score");
+            if (savedScore == "") {
+                return;
+            }
+            var savedFreqMax = this.getCookie("popOutFrequencyMax");
+            var savedFreqMin = this.getCookie("popOutFrequencyMin");
+            var savedDurMax = this.getCookie("stayOutDurationMax");
+            var savedDurMin = this.getCookie("stayOutDurationMin");
+
+            // Load cookie values into variables
+            this.score = savedScore;
+            this.popOutFrequencyMax = savedFreqMax;
+            this.popOutFrequencyMin = savedFreqMin;
+            this.stayOutDurationMax = savedDurMax;
+            this.stayOutDurationMin = savedDurMin;
+
+            // Start the game
+            this.startGame();
+        },
+        saveCookie: function(cname, cvalue, daysToExpire){
+            var d = new Date();
+            d.setTime(d.getTime() + (daysToExpire*24*60*60*1000));
+            var expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        },
+        getCookie: function(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
     },
 })

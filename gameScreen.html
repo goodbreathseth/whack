@@ -22,7 +22,7 @@
         <div v-if="gameState === 'unstarted'">
             <h1 class="text-6xl text-center my-6">Whack-A-Mole</h1>
             <p class="text-2xl text-center py-4" @click='startGame()'>Start Game</p>
-            <p class="text-2xl text-center py-4">Load Game (not implemented)</p>
+            <p class="text-2xl text-center py-4" @click='loadGame()'>Load Game</p>
         </div>
 
         <div v-if="gameState === 'running'" class="flex bg-green-500 grassHeight">
@@ -45,7 +45,7 @@
         <div v-if="gameState === 'paused'">
             <h1 class='text-center text-5xl my-6'>Paused</h1>
             <p class='text-center text-2xl py-4' @click='startGame()'>Resume</p>
-            <p class='text-center text-2xl py-4'>Save Game (not implemented)</p>
+            <p class='text-center text-2xl py-4' @click='saveGame()'>Save Game</p>
             <p class='text-center text-2xl py-4' @click='endGame()'>Quit Game</p>
         </div>
 
