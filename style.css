@@ -3,12 +3,29 @@
 }
 
 .holeSize {
-  height: 24vw;
-  width: 24vw;
+  height: 10vw;
+  width: 10vw;
 }
 
 .moleSize {
-  width: 20vw;
+  width: 8vw;
+}
+
+.setScreenWidth {
+  width: 50%;
+}
+
+@media screen and (max-width: 600px) {
+  .holeSize {
+    height: 24vw;
+    width: 24vw;
+  }
+  .moleSize {
+    width: 20vw;
+  }
+  .setScreenWidth {
+    width: 100%;
+  }
 }
 
 .popup-enter-active, .popup-leave-active {

@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <title>Whack</title>
 </head>
-<body>
+<body class="text-center">
     <div id="app" >
-        <div class="w-full bg-white p-2 flex justify-between items-center h-12">
+        <div class="setScreenWidth bg-white p-2 flex justify-between items-center h-12">
             <p>Score: {{ score }}</p>
             <button v-if="gameState === 'running'" class="bg-gray-200 py-1 px-4" @click="pauseGame()">
                 <span>Pause</span>
@@ -25,7 +25,7 @@
             <p class="text-2xl text-center py-4" @click='loadGame()'>Load Game</p>
         </div>
 
-        <div v-if="gameState === 'running'" class="flex bg-green-500 grassHeight">
+        <div v-if="gameState === 'running'" class="setScreenWidth flex bg-green-500 grassHeight">
             <div class="self-center text-center">
                 <div v-for="(isVisible, index) in arrayOfMoles"  class="relative inline-block rounded-full holeSize bg-orange-900 mx-3 my-5">
                     <div class="rounded-full w-full h-full relative overflow-hidden">
