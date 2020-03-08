@@ -1,5 +1,5 @@
 .grassHeight {
-  height: calc(100vh - 3rem);
+  height: 80vh;
 }
 
 .holeSize {
@@ -8,10 +8,10 @@
 }
 
 .moleSize {
-  width: 8vw;
+  width: 8.5vw;
 }
 
-.setScreenWidth {
+.setScreenDimensions {
   width: 50%;
 }
 
@@ -23,8 +23,11 @@
   .moleSize {
     width: 20vw;
   }
-  .setScreenWidth {
+  .setScreenDimensions {
     width: 100%;
+  }
+  .grassHeight {
+    height: calc(100vh - 3rem);
   }
 }
 
@@ -32,7 +35,7 @@
   transition: all .2s ease;
 }
 .popup-enter, .popup-leave-to {
-  transform: translateY(80px)
+  transform: translateY(90px)
 }
 
 .scoreTransition-enter-active, .scoreTransition-leave-active {
