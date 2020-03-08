@@ -90,17 +90,23 @@ new Vue ({
             this.saveCookie("popOutFrequencyMin", this.popOutFrequencyMin, 365);
             this.saveCookie("stayOutDurationMax", this.stayOutDurationMax, 365);
             this.saveCookie("stayOutDurationMin", this.stayOutDurationMin, 365);
+            var saveSnackbar = document.getElementById("saveSnackbar");
+            saveSnackbar.classList.add("show");
+            setTimeout(function(){ saveSnackbar.className = saveSnackbar.className.replace("show", ""); }, 3000);
         },
         loadGame: function(){
             // Load cookies
-            var savedScore = this.getCookie("score");
-            if (savedScore == "") {
+            var savedScore = parseInt(this.getCookie("score"));
+            if (!Number.isInteger(savedScore)) {
+                var loadSnackbar = document.getElementById("loadFailureSnackbar");
+                loadSnackbar.classList.add("show");
+                setTimeout(function(){ loadSnackbar.className = loadSnackbar.className.replace("show", ""); }, 3000);
                 return;
             }
-            var savedFreqMax = this.getCookie("popOutFrequencyMax");
-            var savedFreqMin = this.getCookie("popOutFrequencyMin");
-            var savedDurMax = this.getCookie("stayOutDurationMax");
-            var savedDurMin = this.getCookie("stayOutDurationMin");
+            var savedFreqMax = parseFloat(this.getCookie("popOutFrequencyMax"));
+            var savedFreqMin = parseFloat(this.getCookie("popOutFrequencyMin"));
+            var savedDurMax = parseFloat(this.getCookie("stayOutDurationMax"));
+            var savedDurMin = parseFloat(this.getCookie("stayOutDurationMin"));
 
             // Load cookie values into variables
             this.score = savedScore;
@@ -111,6 +117,9 @@ new Vue ({
 
             // Start the game
             this.startGame();
+            var loadSnackbar = document.getElementById("loadSuccessSnackbar");
+            loadSnackbar.classList.add("show");
+            setTimeout(function(){ loadSnackbar.className = loadSnackbar.className.replace("show", ""); }, 3000);
         },
         saveCookie: function(cname, cvalue, daysToExpire){
             var d = new Date();
